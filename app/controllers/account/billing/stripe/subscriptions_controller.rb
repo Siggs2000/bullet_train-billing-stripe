@@ -18,7 +18,7 @@ class Account::Billing::Stripe::SubscriptionsController < Account::ApplicationCo
       success_url: CGI.unescape(url_for([:refresh, :account, @subscription, session_id: "{CHECKOUT_SESSION_ID}"])),
       cancel_url: url_for([:account, @subscription.generic_subscription]),
       metadata: {
-        promotekit_referral: window.promotekit_referral,
+        promotekit_referral: current_user.pm_referral,
       },
       allow_promotion_codes: allow_promotion_codes,
       payment_method_collection: 'if_required',
